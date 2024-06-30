@@ -1,12 +1,13 @@
 const prompt = require('prompt-sync')();
+
+
 const basicSalary = parseFloat(prompt("Input basic salary:  " ));
 const benefits = parseFloat(prompt("Input benefits:  " ));
 
-const grossSalary =basicSalary+benefits
-
+//Get paye=grossSalary*rate
 function getPaye(grossSalary){
    if(grossSalary <  24000){
-    // let paye;
+   
     return paye = grossSalary * 0.01
     
    }else if (grossSalary > 24000){
@@ -62,26 +63,28 @@ function getNHIFDeductions (grossSalary){
     }
 }
 
+//Deductions for NSSF=basicSalary * rate
+const NSSFRate = 0.06;
 function getNSSFdeductions(basicSalary){
-    return basicSalary * 0.06
+    return basicSalary * NSSFRate;
 }
-
-function gethouseLevy(grossSalary){
-    return grossSalary * 0.015
+//Deductions for housinglevy = basicSalary * housingLevyRate
+const housingLevyRate = 0.015; 
+function gethouseLevy(basicSalary){
+    return basicSalary * housingLevyRate;
 }
 
 function netSalary(basicSalary, benefits){
-    const grossSalary = basicSalary + benefits;
+    const grossSalary=basicSalary + benefits;
     const paye = getPaye(grossSalary);
-    const nhif = getNHIFDeductions(grossSalary);
-    const nssf = getNSSFdeductions(basicSalary);
-    const houseLevy = gethouseLevy(grossSalary);
+    const NHIF = getNHIFDeductions(grossSalary);
+    const NSSF = getNSSFdeductions ( basicSalary);
+    const houseLevy = gethouseLevy( basicSalary); 
 
-    const netSalary = grossSalary - (paye + nhif + nssf + houseLevy);
+   const  netSalary = grossSalary - (paye + NHIF + NSSF + houseLevy);
+
     return netSalary;
 
-  //netSalary=grossSalary -(HouseLevy-getNSSFdeductions-getNHIFDeductions-getPaye)
-  return netSalary;
 }
-console.log("Net Salary: " + netSalary(basicSalary, benefits))
-//console.log(netSalary());
+console.log ("Net Salary:" + netSalary(basicSalary, benefits)) 
+
