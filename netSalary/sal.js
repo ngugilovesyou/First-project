@@ -74,6 +74,7 @@ function gethouseLevy(basicSalary){
     return basicSalary * housingLevyRate;
 }
 
+//netsalary=grossSalary-(NHIF + NSSF + houselevy + paye)         )
 function netSalary(basicSalary, benefits){
     const grossSalary=basicSalary + benefits;
     const paye = getPaye(grossSalary);
