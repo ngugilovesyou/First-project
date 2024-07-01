@@ -76,16 +76,17 @@ function gethouseLevy(basicSalary){
 
 //netsalary=grossSalary-(NHIF + NSSF + houselevy + paye)         )
 function netSalary(basicSalary, benefits){
-    const grossSalary=basicSalary + benefits;
-    const paye = getPaye(grossSalary);
-    const NHIF = getNHIFDeductions(grossSalary);
-    const NSSF = getNSSFdeductions ( basicSalary);
-    const houseLevy = gethouseLevy( basicSalary); 
+    console.log(grossSalary=basicSalary + benefits);//prints out the gross salary(total employee's salary)
+    console.log (paye = getPaye(grossSalary));//prints out the tax deduction
+    console.log (NHIF = getNHIFDeductions(grossSalary));//prints the amount the NHIF deducted
+    console.log (NSSF = getNSSFdeductions(basicSalary));//prints the amount the NSSF deducted
+    console.log (houseLevy = gethouseLevy(basicSalary));//prints the amount the housing levy deducted 
 
    const  netSalary = grossSalary - (paye + NHIF + NSSF + houseLevy);
 
     return netSalary;
 
 }
+
 console.log ("Net Salary:" + netSalary(basicSalary, benefits)) 
 
